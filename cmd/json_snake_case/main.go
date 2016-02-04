@@ -151,11 +151,11 @@ func main() {
 				g.Printf("\n")
 
 				g.Printf("func New%sJSON(m *%s) *%sJSON {\n", name, name, name)
-				g.Printf("	v := &%sJSON{}\n", name)
+				g.Printf("	return &%sJSON{\n", name)
 				for _, fieldName := range fieldNames {
-					g.Printf("	v.%s = m.%s\n", fieldName, fieldName)
+					g.Printf("		%s:  m.%s,\n", fieldName, fieldName)
 				}
-				g.Printf("return v\n")
+				g.Printf("	}\n")
 				g.Printf("}\n")
 
 				g.Printf("\n")
