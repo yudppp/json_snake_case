@@ -59,7 +59,33 @@ type User struct {
 $ go generate
 ```
 
+## Examples
 
+```go
+type User struct {
+	UserID int
+	Name   string
+}
+// -->
+type UserJSON struct {
+	UserID int    `json:"user_id"`
+	Name   string `json:"name"`
+}
+```
+
+```go
+type User struct {
+	UserID int     `json:"-"`
+	Name   string  `json:"nickname"`
+  Email  *string `json:",omitempty"`
+}
+// -->
+type UserJSON struct {
+	UserID int     `json:"-"`
+	Name   string  `json:"nickname"`
+	Email  *string `json:"email,omitempty"`
+}
+```
 
 ## TODO
 
