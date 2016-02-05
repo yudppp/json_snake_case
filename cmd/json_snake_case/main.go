@@ -19,7 +19,7 @@ import (
 	"unicode"
 )
 
-var tagRegex = regexp.MustCompile(`([0-9a-zA-Z,_=&\(\)]+)(:( )?"([0-9a-zA-Z,_=&\(\)]*)")?`)
+var tagRegex = regexp.MustCompile(`([0-9a-zA-Z,_=&\(\)\-]+)(:( )?"([0-9a-zA-Z,_=&\(\)\-]*)")?`)
 
 var (
 	typeNames = flag.String("type", "", "comma-separated list of type names; must be set")
