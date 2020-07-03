@@ -175,6 +175,18 @@ func (g *Generator) generate(name string, structType *ast.StructType) {
 
 	g.Printf("\n")
 
+	g.Printf("func (m *%s) UnmarshalJSON(b []byte) error{\n", name)
+	g.Printf("	nm := &%sJSON{}\n", name)
+	g.Printf("	if err := json.Unmarshal(b,nm); err != nil {\n")
+	g.Printf("		return err\n")
+	g.Printf("	}\n")
+	for _, fieldName := range fieldNames {
+		g.Printf("	m.%s = nm.%s\n", fieldName, fieldName)
+	}
+	g.Printf("	return nil")
+	g.Printf("}\n")
+	g.Printf("\n")
+
 	g.Printf("func New%sJSON(m *%s) *%sJSON {\n", name, name, name)
 	g.Printf("	return &%sJSON{\n", name)
 	for _, fieldName := range fieldNames {
